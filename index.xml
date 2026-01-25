@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>Phish 🐟</title>
+      <link>https://Rainbow-prince.github.io</link>
+      <description>Last 10 notes on Phish 🐟</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>UNIT 0</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0</guid>
+    <description><![CDATA[  I am trying to study ai agent using the course by huggingface: Welcome to the 🤗 AI Agents Course. ]]></description>
+    <pubDate>Sat, 24 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>UNIT 1. INTRODUCTION TO AGENTS</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGENTS</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGENTS</guid>
+    <description><![CDATA[  What is an Agent? In my understanding, AI agent is a tool that can chat with human, in natural human language, and take some action like setting an alarm, reading document or creating a file, rather than just be a “talker”. ]]></description>
+    <pubDate>Sat, 24 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>线性规划学习笔记</title>
+    <link>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0</link>
+    <guid>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0</guid>
+    <description><![CDATA[ 线性规划的基本形式可以从中学线性规划演变过来。中学的线性规划（解线性方程组）往往变量较少，适合手算。这里就给出了一些常见了线性规划题目，在一些有棱有角的可行域中，搜索符合题目的答案，这些答案往往容易出现在顶点 回忆一道高中的线性规划题目 若实数 x，y 满足下列条件： \begin{cases} x + y \geqslant 5 \\ x - 2y \leqslant 3 \\ y \leqslant 4 \end{cases} 则 z = 2x + 3y 的最小值是多少？ 直接用desmos渲染：高中线性规划【demo】 | Desmos高中用手画图的方法图中颜色最深的三角形，便是三个约束... ]]></description>
+    <pubDate>Thu, 22 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>MIT Intro to Algorithms</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Algorithms--and--Data-Structures/MIT-Intro-to-Algorithms</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Algorithms--and--Data-Structures/MIT-Intro-to-Algorithms</guid>
+    <description><![CDATA[ ⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ]]></description>
+    <pubDate>Sun, 18 Jan 2026 15:57:27 GMT</pubDate>
+  </item><item>
+    <title>第2章 微分方程与动力系统</title>
+    <link>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%AC%AC2%E7%AB%A0-%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E5%8A%9B%E7%B3%BB%E7%BB%9F</link>
+    <guid>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%AC%AC2%E7%AB%A0-%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E5%8A%9B%E7%B3%BB%E7%BB%9F</guid>
+    <description><![CDATA[ RESOURCES Official Website: intro-mathmodel-课程详情 | Datawhale NOTE 微分方程的解本质：给定函数与微分（一阶微分，二阶微分）之间的关系，求解出函数的表达式 为什么需要数值计算方法 求解微分方程，本质上就是通过给定函数与微分之间的关系（微分方程所代表的比如函数y与y‘的关系），求解出函数的表达式。但是事实上，大多数微分方程是没有解析解的，也就是无法求解出函数的具体解析式（无法用某些变量来表示出解，比如y），这个时候，为了得到一个可以用的答案，可以选择数值方法 python中数值计算方法常用的库有哪些？ NumPy、SciPy和SymP... ]]></description>
+    <pubDate>Fri, 16 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>Untitled</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/01.-Programming--and--Software-Development/C-CPP/Untitled</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/01.-Programming--and--Software-Development/C-CPP/Untitled</guid>
+    <description><![CDATA[ There is a snippet of code: #include &lt;iostream&gt; using namespace std; int main() { char x[] = &quot;12345&quot;; char y[] = {&#039;1&#039;, &#039;2&#039;, &#039;3&#039;,&#039;4&#039;,&#039;5&#039;}; cout &lt;&lt; sizeof(x) &lt;&lt; &quot;, &quot; &lt;&lt; sizeof(y) &lt;&lt; endl; return 0; }. ]]></description>
+    <pubDate>Thu, 15 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>slides</title>
+    <link>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/slides</link>
+    <guid>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/slides</guid>
+    <description><![CDATA[ 欢迎来到 Datawhale 组队学习 数学建模导论 · 2026年1月 运营助教：林真宇 关于 Datawhale 专注于AI领域的开源组织 汇集院校和知名企业学习者 所有学习知识免费 开源精神 + 探索精神 愿景：成为对学习者最有价值的开源社区 ⚠️ 防诈骗提醒 本次学习完全免费！ 任何人加好友说要付费 → 诈骗 推荐付费课程 → 诈骗 如遇诈骗，举报给官方企微号：小鲸鱼@Datawhale 什么是组队学习 一群志同道合的小伙伴： 一起学习讨论 克服拖延症 组队打boss 没有老师，没有教学，有的是一群热爱学习和渴望改变的人，交流学习，互促共进。 助教团队 课程作者：马世拓 专业助教：胡锐... ]]></description>
+    <pubDate>Mon, 12 Jan 2026 11:00:03 GMT</pubDate>
+  </item><item>
+    <title>【学习笔记】datawhale组队学习：数学建模导论</title>
+    <link>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91datawhale%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%AF%BC%E8%AE%BA</link>
+    <guid>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91datawhale%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0%EF%BC%9A%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%AF%BC%E8%AE%BA</guid>
+    <description><![CDATA[ 本笔记，讲记录本人再datawhale组队学习中，关于数学建模的一些思考 资源 学习中的问题 术语中英对照 [ ] 学习笔记 1.1 向量表示法与几何建模基本案例 日志 2026-01-08 熟悉群里的流程 . ]]></description>
+    <pubDate>Wed, 07 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>Harvard Statistics 110 Probability</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Harvard-Statistics-110-Probability</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Harvard-Statistics-110-Probability</guid>
+    <description><![CDATA[ ⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ]]></description>
+    <pubDate>Tue, 06 Jan 2026 11:23:44 GMT</pubDate>
+  </item><item>
+    <title>What is Shell Infrastructure Host on your computer?</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/03.-Systems/Operating-Systems/WIN/What-is-Shell-Infrastructure-Host-on-your-computer</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/03.-Systems/Operating-Systems/WIN/What-is-Shell-Infrastructure-Host-on-your-computer</guid>
+    <description><![CDATA[  Shell Infrastructure Host(sometimes named sihost.exe) which is one of the system-level components of Windows, you can find it in your win task manager. ]]></description>
+    <pubDate>Sat, 27 Dec 2025 16:00:00 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
