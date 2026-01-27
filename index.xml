@@ -6,16 +6,22 @@
       <description>Last 10 notes on Phish 🐟</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>What are LLMs?</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-are-LLMs</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-are-LLMs</guid>
+    <description><![CDATA[ This section offers a concise technical explanation of the use of LLMs. ]]></description>
+    <pubDate>Mon, 26 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
     <title>UNIT 0</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0</guid>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0/UNIT-0</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0/UNIT-0</guid>
     <description><![CDATA[  I am trying to study ai agent using the course by huggingface: Welcome to the 🤗 AI Agents Course. ]]></description>
     <pubDate>Sat, 24 Jan 2026 16:00:00 GMT</pubDate>
   </item><item>
-    <title>UNIT 1. INTRODUCTION TO AGENTS</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGENTS</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGENTS</guid>
-    <description><![CDATA[  What is an Agent? In my understanding, AI agent is a tool that can chat with human, in natural human language, and take some action like setting an alarm, reading document or creating a file, rather than just be a “talker”. ]]></description>
+    <title>What is an Agent?</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-is-an-Agent</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-is-an-Agent</guid>
+    <description><![CDATA[  In my understanding, AI agent is a tool that can chat with human, in natural human language, and take some action like setting an alarm, reading document or creating a file, rather than just be a “talker”. ]]></description>
     <pubDate>Sat, 24 Jan 2026 16:00:00 GMT</pubDate>
   </item><item>
     <title>线性规划学习笔记</title>
@@ -59,12 +65,6 @@
     <guid>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Harvard-Statistics-110-Probability</guid>
     <description><![CDATA[ ⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ]]></description>
     <pubDate>Tue, 06 Jan 2026 11:23:44 GMT</pubDate>
-  </item><item>
-    <title>What is Shell Infrastructure Host on your computer?</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/03.-Systems/Operating-Systems/WIN/What-is-Shell-Infrastructure-Host-on-your-computer</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/03.-Systems/Operating-Systems/WIN/What-is-Shell-Infrastructure-Host-on-your-computer</guid>
-    <description><![CDATA[  Shell Infrastructure Host(sometimes named sihost.exe) which is one of the system-level components of Windows, you can find it in your win task manager. ]]></description>
-    <pubDate>Sat, 27 Dec 2025 16:00:00 GMT</pubDate>
   </item>
     </channel>
   </rss>
