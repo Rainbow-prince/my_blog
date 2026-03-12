@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>walkthrough</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Phish 🐟"/><meta property="og:title" content="walkthrough"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="walkthrough"/><meta name="twitter:description" content="知识图谱提取 Prompt 设计调研报告 目录 总览：知识图谱提取 Prompt 的通用模式 LlamaIndex 的 Prompt 设计 Microsoft GraphRAG 的 Prompt 设计 LangChain LLMGraphTransformer 的 Prompt 设计 社区最佳实践与经验 框架对比与设计启示 1."/><meta property="og:description" content="知识图谱提取 Prompt 设计调研报告 目录 总览：知识图谱提取 Prompt 的通用模式 LlamaIndex 的 Prompt 设计 Microsoft GraphRAG 的 Prompt 设计 LangChain LLMGraphTransformer 的 Prompt 设计 社区最佳实践与经验 框架对比与设计启示 1."/><meta property="og:image:alt" content="知识图谱提取 Prompt 设计调研报告 目录 总览：知识图谱提取 Prompt 的通用模式 LlamaIndex 的 Prompt 设计 Microsoft GraphRAG 的 Prompt 设计 LangChain LLMGraphTransformer 的 Prompt 设计 社区最佳实践与经验 框架对比与设计启示 1."/><meta property="twitter:domain" content="Rainbow-prince.github.io"/><meta property="og:url" content="https://rainbow-prince.github.io/Activity/潮汕极客节/walkthrough"/><meta property="twitter:url" content="https://rainbow-prince.github.io/Activity/潮汕极客节/walkthrough"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="知识图谱提取 Prompt 设计调研报告 目录 总览：知识图谱提取 Prompt 的通用模式 LlamaIndex 的 Prompt 设计 Microsoft GraphRAG 的 Prompt 设计 LangChain LLMGraphTransformer 的 Prompt 设计 社区最佳实践与经验 框架对比与设计启示 1."/><meta name="generator" content="Quartz"/><link href="../../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiRTpcXDEwMC1CVVNTSU5FU1NfTUFKT1JcXFByb2plY3RfT2JzaWRpYW5cXHF1YXJ0elxccXVhcnR6XFxjb21wb25lbnRzXFxzdHlsZXMiLCJzb3VyY2VzIjpbIm1lcm1haWQuaW5saW5lLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUdGO0VBQ0U7OztBQUtGO0VBQ0U7RUFDQTs7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTs7QUFHRjtFQUNFOztBQUlGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLmV4cGFuZC1idXR0b24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsb2F0OiByaWdodDtcbiAgcGFkZGluZzogMC40cmVtO1xuICBtYXJnaW46IDAuM3JlbTtcbiAgcmlnaHQ6IDA7IC8vIE5PVEU6IHJpZ2h0IHdpbGwgYmUgc2V0IGluIG1lcm1haWQuaW5saW5lLnRzXG4gIGNvbG9yOiB2YXIoLS1ncmF5KTtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1kYXJrKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICBib3JkZXI6IDFweCBzb2xpZDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBvcGFjaXR5OiAwO1xuICB0cmFuc2l0aW9uOiAwLjJzO1xuXG4gICYgPiBzdmcge1xuICAgIGZpbGw6IHZhcigtLWxpZ2h0KTtcbiAgICBmaWx0ZXI6IGNvbnRyYXN0KDAuMyk7XG4gIH1cblxuICAmOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLWNvbG9yOiB2YXIoLS1zZWNvbmRhcnkpO1xuICB9XG5cbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgfVxufVxuXG5wcmUge1xuICAmOmhvdmVyID4gLmV4cGFuZC1idXR0b24ge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbjogMC4ycztcbiAgfVxufVxuXG4jbWVybWFpZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGNvbnRhaW46IGxheW91dDtcbiAgei1pbmRleDogOTk5O1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogbm9uZTtcbiAgYmFja2Ryb3AtZmlsdGVyOiBibHVyKDRweCk7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC41KTtcblxuICAmLmFjdGl2ZSB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG5cbiAgJiA+ICNtZXJtYWlkLXNwYWNlIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICBoZWlnaHQ6IDgwdmg7XG4gICAgd2lkdGg6IDgwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgICYgPiAubWVybWFpZC1jb250ZW50IHtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbiAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjFzIGVhc2U7XG4gICAgICBvdmVyZmxvdzogdmlzaWJsZTtcbiAgICAgIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICAgICAgbWluLXdpZHRoOiAyMDBweDtcblxuICAgICAgcHJlIHtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICBib3JkZXI6IG5vbmU7XG4gICAgICB9XG5cbiAgICAgIHN2ZyB7XG4gICAgICAgIG1heC13aWR0aDogbm9uZTtcbiAgICAgICAgaGVpZ2h0OiBhdXRvO1xuICAgICAgfVxuICAgIH1cblxuICAgICYgPiAubWVybWFpZC1jb250cm9scyB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBib3R0b206IDIwcHg7XG4gICAgICByaWdodDogMjBweDtcbiAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICBnYXA6IDhweDtcbiAgICAgIHBhZGRpbmc6IDhweDtcbiAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgICBib3gtc2hhZG93OiAwIDJweCA0cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgICAgei1pbmRleDogMjtcblxuICAgICAgLm1lcm1haWQtY29udHJvbC1idXR0b24ge1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgd2lkdGg6IDMycHg7XG4gICAgICAgIGhlaWdodDogMzJweDtcbiAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHQpO1xuICAgICAgICBjb2xvcjogdmFyKC0tZGFyayk7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiB2YXIoLS1ib2R5Rm9udCk7XG4gICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgfVxuXG4gICAgICAgICY6YWN0aXZlIHtcbiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTtcbiAgICAgICAgfVxuXG4gICAgICAgIC8vIFN0eWxlIHRoZSByZXNldCBidXR0b24gZGlmZmVyZW50bHlcbiAgICAgICAgJjpudGgtY2hpbGQoMikge1xuICAgICAgICAgIHdpZHRoOiBhdXRvO1xuICAgICAgICAgIHBhZGRpbmc6IDAgMTJweDtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiJdfQ== */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://Rainbow-prince.github.io/index.xml"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://Rainbow-prince.github.io/Activity/潮汕极客节/walkthrough-og-image.webp"/><meta property="og:image:url" content="https://Rainbow-prince.github.io/Activity/潮汕极客节/walkthrough-og-image.webp"/><meta name="twitter:image" content="https://Rainbow-prince.github.io/Activity/潮汕极客节/walkthrough-og-image.webp"/><meta property="og:image:type" content="image/.webp"/></head><body data-slug="Activity/潮汕极客节/walkthrough"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Phish 🐟</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-13"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-13" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../Activity/">Activity</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../Activity/潮汕极客节/">潮汕极客节</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>walkthrough</a></div></nav><h1 class="article-title">walkthrough</h1><p show-comma="true" class="content-meta"><time datetime="2026-02-23T10:15:43.421Z">Feb 23, 2026</time><span>15 min read</span></p></div></div><article class="popover-hint"><h1 id="知识图谱提取-prompt-设计调研报告">知识图谱提取 Prompt 设计调研报告<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#知识图谱提取-prompt-设计调研报告" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<h2 id="目录">目录<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#目录" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li><a href="#1-%E6%80%BB%E8%A7%88" class="internal alias">总览：知识图谱提取 Prompt 的通用模式</a></li>
+<li><a href="#2-llamaindex" class="internal alias">LlamaIndex 的 Prompt 设计</a></li>
+<li><a href="#3-graphrag" class="internal alias">Microsoft GraphRAG 的 Prompt 设计</a></li>
+<li><a href="#4-langchain" class="internal alias">LangChain LLMGraphTransformer 的 Prompt 设计</a></li>
+<li><a href="#5-%E7%A4%BE%E5%8C%BA%E7%BB%8F%E9%AA%8C" class="internal alias">社区最佳实践与经验</a></li>
+<li><a href="#6-%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93" class="internal alias">框架对比与设计启示</a></li>
+</ol>
+<hr/>
+<h2 id="1-总览知识图谱提取-prompt-的通用模式-1-总览">1. 总览：知识图谱提取 Prompt 的通用模式 {#1-总览}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-总览知识图谱提取-prompt-的通用模式-1-总览" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>所有主流框架的 KG 提取 Prompt 都遵循一个共同的模式：</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart LR\n    A[\&quot;📝 原始文本\&quot;] --> B[\&quot;🤖 LLM + Prompt\&quot;]\n    B --> C[\&quot;🔗 实体 + 关系\&quot;]\n    C --> D[\&quot;📊 知识图谱\&quot;]\n    \n    subgraph Prompt 组成\n        P1[\&quot;角色/目标定义\&quot;]\n        P2[\&quot;步骤指导\&quot;]\n        P3[\&quot;输出格式规范\&quot;]\n        P4[\&quot;Few-shot 示例\&quot;]\n        P5[\&quot;约束与规则\&quot;]\n    end&quot;">flowchart LR
+    A[&quot;📝 原始文本&quot;] --> B[&quot;🤖 LLM + Prompt&quot;]
+    B --> C[&quot;🔗 实体 + 关系&quot;]
+    C --> D[&quot;📊 知识图谱&quot;]
+    
+    subgraph Prompt 组成
+        P1[&quot;角色/目标定义&quot;]
+        P2[&quot;步骤指导&quot;]
+        P3[&quot;输出格式规范&quot;]
+        P4[&quot;Few-shot 示例&quot;]
+        P5[&quot;约束与规则&quot;]
+    end
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>IMPORTANT</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>核心设计原则</strong>：好的 KG 提取 Prompt 必须同时解决 <strong>“提取什么”</strong>（实体类型、关系类型）和 <strong>“怎么输出”</strong>（结构化格式）两个问题。</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="2-llamaindex-的-prompt-设计-2-llamaindex">2. LlamaIndex 的 Prompt 设计 {#2-llamaindex}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-llamaindex-的-prompt-设计-2-llamaindex" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>LlamaIndex 提供了 3 种递进式的 KG 提取 Prompt，从简单到复杂，覆盖不同场景。</p>
+<blockquote>
+<p>源码位置: <a href="https://github.com/run-llama/llama_index/blob/main/llama-index-core/llama_index/core/prompts/default_prompts.py" class="external">default_prompts.py<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></p>
+</blockquote>
+<h3 id="21-default_kg_triplet_extract_tmpl--基础三元组提取">2.1 <code>DEFAULT_KG_TRIPLET_EXTRACT_TMPL</code> — 基础三元组提取<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-default_kg_triplet_extract_tmpl--基础三元组提取" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>最简洁的提取 Prompt，适合快速原型验证：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Some text is provided below. Given the text, extract up to </span></span>
+<span data-line><span>{max_knowledge_triplets} knowledge triplets in the form of </span></span>
+<span data-line><span>(subject, predicate, object). Avoid stopwords.</span></span>
+<span data-line><span>---------------------</span></span>
+<span data-line><span>Example:</span></span>
+<span data-line><span>Text: Alice is Bob's mother.</span></span>
+<span data-line><span>Triplets:</span></span>
+<span data-line><span>(Alice, is mother of, Bob)</span></span>
+<span data-line><span>Text: Philz is a coffee shop founded in Berkeley in 1982.</span></span>
+<span data-line><span>Triplets:</span></span>
+<span data-line><span>(Philz, is, coffee shop)</span></span>
+<span data-line><span>(Philz, founded in, Berkeley)</span></span>
+<span data-line><span>(Philz, founded in, 1982)</span></span>
+<span data-line><span>---------------------</span></span>
+<span data-line><span>Text: {text}</span></span>
+<span data-line><span>Triplets:</span></span></code></pre></figure>
+<p><strong>设计特点</strong>：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>说明</th></tr></thead><tbody><tr><td><strong>输出格式</strong></td><td><code>(subject, predicate, object)</code> 纯文本元组</td></tr><tr><td><strong>Schema 约束</strong></td><td>❌ 无，完全开放式</td></tr><tr><td><strong>Few-shot</strong></td><td>✅ 2 个简单示例</td></tr><tr><td><strong>数量控制</strong></td><td><code>{max_knowledge_triplets}</code> 参数</td></tr><tr><td><strong>适用场景</strong></td><td>探索性分析，快速验证</td></tr></tbody></table></div>
+<h3 id="22-default_dynamic_extract_tmpl--动态类型提取">2.2 <code>DEFAULT_DYNAMIC_EXTRACT_TMPL</code> — 动态类型提取<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-default_dynamic_extract_tmpl--动态类型提取" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>引入了 <strong>初始本体 (Initial Ontology)</strong> 概念，允许 LLM 在此基础上自由扩展：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Extract up to {max_knowledge_triplets} knowledge triplets from the given text.</span></span>
+<span data-line><span>Each triplet should be in the form of (head, relation, tail) with their respective types.</span></span>
+<span data-line><span>---------------------</span></span>
+<span data-line><span>INITIAL ONTOLOGY:</span></span>
+<span data-line><span>Entity Types: {allowed_entity_types}</span></span>
+<span data-line><span>Relation Types: {allowed_relation_types}</span></span>
+<span data-line> </span>
+<span data-line><span>Use these types as a starting point, but introduce new types if necessary </span></span>
+<span data-line><span>based on the context.</span></span>
+<span data-line> </span>
+<span data-line><span>GUIDELINES:</span></span>
+<span data-line><span>- Output in JSON format: [{&quot;head&quot;: &quot;&quot;, &quot;head_type&quot;: &quot;&quot;, &quot;relation&quot;: &quot;&quot;, </span></span>
+<span data-line><span>  &quot;tail&quot;: &quot;&quot;, &quot;tail_type&quot;: &quot;&quot;}]</span></span>
+<span data-line><span>- Use the most complete form for entities (e.g., 'United States of America' </span></span>
+<span data-line><span>  instead of 'USA')</span></span>
+<span data-line><span>- Keep entities concise (3-5 words max)</span></span>
+<span data-line><span>- Break down complex phrases into multiple triplets</span></span>
+<span data-line><span>- Ensure the knowledge graph is coherent and easily understandable</span></span>
+<span data-line><span>---------------------</span></span>
+<span data-line><span>EXAMPLE:</span></span>
+<span data-line><span>Text: Tim Cook, CEO of Apple Inc., announced the new Apple Watch </span></span>
+<span data-line><span>that monitors heart health. UC Berkeley researchers studied the </span></span>
+<span data-line><span>benefits of apples.</span></span>
+<span data-line><span>Output:</span></span>
+<span data-line><span>[{&quot;head&quot;: &quot;Tim Cook&quot;, &quot;head_type&quot;: &quot;PERSON&quot;, &quot;relation&quot;: &quot;CEO_OF&quot;, </span></span>
+<span data-line><span>  &quot;tail&quot;: &quot;Apple Inc.&quot;, &quot;tail_type&quot;: &quot;COMPANY&quot;},</span></span>
+<span data-line><span> {&quot;head&quot;: &quot;Apple Inc.&quot;, &quot;head_type&quot;: &quot;COMPANY&quot;, &quot;relation&quot;: &quot;PRODUCES&quot;, </span></span>
+<span data-line><span>  &quot;tail&quot;: &quot;Apple Watch&quot;, &quot;tail_type&quot;: &quot;PRODUCT&quot;},</span></span>
+<span data-line><span> ...]</span></span>
+<span data-line><span>---------------------</span></span>
+<span data-line><span>Text: {text}</span></span>
+<span data-line><span>Output:</span></span></code></pre></figure>
+<p><strong>设计特点</strong>：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>说明</th></tr></thead><tbody><tr><td><strong>输出格式</strong></td><td>JSON 数组，含类型信息</td></tr><tr><td><strong>Schema 约束</strong></td><td>⚡ 半约束：提供初始类型，允许扩展</td></tr><tr><td><strong>Few-shot</strong></td><td>✅ 1 个含多种实体类型的复杂示例</td></tr><tr><td><strong>实体规范</strong></td><td>使用完整形式、限制 3-5 词</td></tr><tr><td><strong>适用场景</strong></td><td>领域自适应，逐步构建本体</td></tr></tbody></table></div>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>TIP</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>关键设计亮点</strong>：“Use these types as a starting point, but introduce new types if necessary” — 在约束和灵活性之间取得平衡。</p>
+</div>
+</blockquote>
+<h3 id="23-default_dynamic_extract_props_tmpl--带属性的动态提取">2.3 <code>DEFAULT_DYNAMIC_EXTRACT_PROPS_TMPL</code> — 带属性的动态提取<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-default_dynamic_extract_props_tmpl--带属性的动态提取" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>在 2.2 基础上增加了 <strong>实体属性和关系属性</strong> 的提取：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>INITIAL ONTOLOGY:</span></span>
+<span data-line><span>Entity Types: {allowed_entity_types}</span></span>
+<span data-line><span>Entity Properties: {allowed_entity_properties}</span></span>
+<span data-line><span>Relation Types: {allowed_relation_types}</span></span>
+<span data-line><span>Relation Properties: {allowed_relation_properties}</span></span>
+<span data-line><span>...</span></span>
+<span data-line><span>GUIDELINES:</span></span>
+<span data-line><span>- Output in JSON format: [{&quot;head&quot;: &quot;&quot;, &quot;head_type&quot;: &quot;&quot;, &quot;head_props&quot;: {...}, </span></span>
+<span data-line><span>  &quot;relation&quot;: &quot;&quot;, &quot;relation_props&quot;: {...}, &quot;tail&quot;: &quot;&quot;, &quot;tail_type&quot;: &quot;&quot;, </span></span>
+<span data-line><span>  &quot;tail_props&quot;: {...}}]</span></span></code></pre></figure>
+<p><strong>新增要素</strong>：<code>head_props</code> / <code>relation_props</code> / <code>tail_props</code> 字典，用于捕获更精细的属性信息（如日期、数值、状态等）。</p>
+<h3 id="24-llamaindex-的-extractor-抽象">2.4 LlamaIndex 的 Extractor 抽象<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#24-llamaindex-的-extractor-抽象" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>LlamaIndex 通过 3 种 Extractor 组件对应上述 Prompt：</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;graph TD\n    A[\&quot;PropertyGraphIndex\&quot;] --> B[\&quot;SimpleLLMPathExtractor\&quot;]\n    A --> C[\&quot;DynamicLLMPathExtractor\&quot;]\n    A --> D[\&quot;SchemaLLMPathExtractor\&quot;]\n    \n    B -->|\&quot;使用\&quot;| P1[\&quot;基础三元组 Prompt\&quot;]\n    C -->|\&quot;使用\&quot;| P2[\&quot;动态类型 Prompt\&quot;]\n    D -->|\&quot;使用\&quot;| P3[\&quot;严格 Schema Prompt\&quot;]\n    \n    style A fill:#4a9eff,color:#fff\n    style B fill:#ff6b6b,color:#fff\n    style C fill:#ffa94d,color:#fff\n    style D fill:#51cf66,color:#fff&quot;">graph TD
+    A[&quot;PropertyGraphIndex&quot;] --> B[&quot;SimpleLLMPathExtractor&quot;]
+    A --> C[&quot;DynamicLLMPathExtractor&quot;]
+    A --> D[&quot;SchemaLLMPathExtractor&quot;]
+    
+    B -->|&quot;使用&quot;| P1[&quot;基础三元组 Prompt&quot;]
+    C -->|&quot;使用&quot;| P2[&quot;动态类型 Prompt&quot;]
+    D -->|&quot;使用&quot;| P3[&quot;严格 Schema Prompt&quot;]
+    
+    style A fill:#4a9eff,color:#fff
+    style B fill:#ff6b6b,color:#fff
+    style C fill:#ffa94d,color:#fff
+    style D fill:#51cf66,color:#fff
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<ul>
+<li><strong><code>SimpleLLMPathExtractor</code></strong>：无 Schema，开放提取</li>
+<li><strong><code>DynamicLLMPathExtractor</code></strong>：提供初始 Schema，允许扩展</li>
+<li><strong><code>SchemaLLMPathExtractor</code></strong>：严格遵循预定义 Schema</li>
+</ul>
+<hr/>
+<h2 id="3-microsoft-graphrag-的-prompt-设计-3-graphrag">3. Microsoft GraphRAG 的 Prompt 设计 {#3-graphrag}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-microsoft-graphrag-的-prompt-设计-3-graphrag" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>GraphRAG 的 Prompt 设计是目前业界<strong>最复杂、最精炼</strong>的知识图谱提取方案。</p>
+<blockquote>
+<p>源码位置:</p>
+<ul>
+<li><a href="https://github.com/microsoft/graphrag/blob/main/packages/graphrag/graphrag/prompts/index/extract_graph.py" class="external">prompts/index/extract_graph.py<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> （运行时默认 Prompt）</li>
+<li><a href="https://github.com/microsoft/graphrag/blob/main/packages/graphrag/graphrag/prompt_tune/template/extract_graph.py" class="external">prompt_tune/template/extract_graph.py<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> （Prompt 微调模板）</li>
+</ul>
+</blockquote>
+<h3 id="31-核心提取-prompt--graph_extraction_prompt">3.1 核心提取 Prompt — <code>GRAPH_EXTRACTION_PROMPT</code><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-核心提取-prompt--graph_extraction_prompt" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>-Goal-</span></span>
+<span data-line><span>Given a text document that is potentially relevant to this activity and a list </span></span>
+<span data-line><span>of entity types, identify all entities of those types from the text and all </span></span>
+<span data-line><span>relationships among the identified entities.</span></span>
+<span data-line> </span>
+<span data-line><span>-Steps-</span></span>
+<span data-line><span>1. Identify all entities. For each identified entity, extract:</span></span>
+<span data-line><span>   - entity_name: Name of the entity, capitalized</span></span>
+<span data-line><span>   - entity_type: One of [{entity_types}]</span></span>
+<span data-line><span>   - entity_description: Comprehensive description of the entity's </span></span>
+<span data-line><span>     attributes and activities</span></span>
+<span data-line><span>   Format: (&quot;entity&quot;&lt;|>&lt;entity_name>&lt;|>&lt;entity_type>&lt;|>&lt;entity_description>)</span></span>
+<span data-line> </span>
+<span data-line><span>2. From the entities identified in step 1, identify all pairs of </span></span>
+<span data-line><span>   (source_entity, target_entity) that are *clearly related*.</span></span>
+<span data-line><span>   For each pair extract:</span></span>
+<span data-line><span>   - source_entity / target_entity</span></span>
+<span data-line><span>   - relationship_description</span></span>
+<span data-line><span>   - relationship_strength: integer 1-10</span></span>
+<span data-line><span>   Format: (&quot;relationship&quot;&lt;|>&lt;source>&lt;|>&lt;target>&lt;|>&lt;description>&lt;|>&lt;strength>)</span></span>
+<span data-line> </span>
+<span data-line><span>3. Return output as a single list. Use **##** as delimiter.</span></span>
+<span data-line> </span>
+<span data-line><span>4. When finished, output &lt;|COMPLETE|></span></span>
+<span data-line> </span>
+<span data-line><span>-Examples-</span></span>
+<span data-line><span>[3 个由简到繁的 few-shot 示例]</span></span>
+<span data-line> </span>
+<span data-line><span>-Real Data-</span></span>
+<span data-line><span>Entity_types: {entity_types}</span></span>
+<span data-line><span>Text: {input_text}</span></span>
+<span data-line><span>Output:</span></span></code></pre></figure>
+<h3 id="32-graphrag-独创的-gleanings-机制">3.2 GraphRAG 独创的 Gleanings 机制<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-graphrag-独创的-gleanings-机制" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>IMPORTANT</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>Gleanings（拾遗）</strong> 是 GraphRAG 最具创新性的设计——通过多轮迭代确保实体不遗漏。</p>
+</div>
+</blockquote>
+<p>GraphRAG 定义了两个后续 Prompt：</p>
+<p><strong>CONTINUE_PROMPT</strong> — 迭代提取遗漏实体：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>MANY entities and relationships were missed in the last extraction. </span></span>
+<span data-line><span>Remember to ONLY emit entities that match any of the previously </span></span>
+<span data-line><span>extracted types. Add them below using the same format:</span></span></code></pre></figure>
+<p><strong>LOOP_PROMPT</strong> — 判断是否需要继续：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>It appears some entities and relationships may have still been missed. </span></span>
+<span data-line><span>Answer Y if there are still entities or relationships that need to be </span></span>
+<span data-line><span>added, or N if there are none. Please answer with a single letter Y or N.</span></span></code></pre></figure>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart TD\n    A[\&quot;文本块输入\&quot;] --> B[\&quot;首轮提取\&quot;]\n    B --> C{\&quot;检查完整性\&quot;}\n    C -->|\&quot;可能遗漏\&quot;| D[\&quot;CONTINUE_PROMPT\&quot;]\n    D --> E[\&quot;补充提取\&quot;]\n    E --> F[\&quot;LOOP_PROMPT\&quot;]\n    F -->|\&quot;Y: 有遗漏\&quot;| D\n    F -->|\&quot;N: 完成\&quot;| G[\&quot;合并所有提取结果\&quot;]\n    C -->|\&quot;完整\&quot;| G\n    \n    style D fill:#ff6b6b,color:#fff\n    style F fill:#ffa94d,color:#fff&quot;">flowchart TD
+    A[&quot;文本块输入&quot;] --> B[&quot;首轮提取&quot;]
+    B --> C{&quot;检查完整性&quot;}
+    C -->|&quot;可能遗漏&quot;| D[&quot;CONTINUE_PROMPT&quot;]
+    D --> E[&quot;补充提取&quot;]
+    E --> F[&quot;LOOP_PROMPT&quot;]
+    F -->|&quot;Y: 有遗漏&quot;| D
+    F -->|&quot;N: 完成&quot;| G[&quot;合并所有提取结果&quot;]
+    C -->|&quot;完整&quot;| G
+    
+    style D fill:#ff6b6b,color:#fff
+    style F fill:#ffa94d,color:#fff
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>TIP</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Gleanings 解决了 LLM 在处理<strong>密集实体文本</strong>时的 “attention drift” 问题。配置中 <code>max_gleanings</code> 参数控制最大迭代轮次（默认 1）。</p>
+</div>
+</blockquote>
+<h3 id="33-graphrag-的-4-种-prompt-变体">3.3 GraphRAG 的 4 种 Prompt 变体<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-graphrag-的-4-种-prompt-变体" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>变体</th><th>实体类型约束</th><th>输出格式</th><th>用途</th></tr></thead><tbody><tr><td><code>GRAPH_EXTRACTION_PROMPT</code></td><td>✅ 指定类型列表</td><td>Tuple (<code>&lt;|></code> 分隔)</td><td>默认方案</td></tr><tr><td><code>GRAPH_EXTRACTION_JSON_PROMPT</code></td><td>✅ 指定类型列表</td><td>JSON</td><td>JSON 友好场景</td></tr><tr><td><code>UNTYPED_GRAPH_EXTRACTION_PROMPT</code></td><td>❌ 不指定，LLM 自建</td><td>Tuple</td><td>开放探索</td></tr><tr><td>(Example templates)</td><td>—</td><td>—</td><td>Few-shot 生成</td></tr></tbody></table></div>
+<h3 id="34-graphrag-的-prompt-auto-tuning">3.4 GraphRAG 的 Prompt Auto-Tuning<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#34-graphrag-的-prompt-auto-tuning" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>GraphRAG 提供了 <code>prompt_tune</code> 模块，可根据用户的<strong>实际语料</strong>自动生成定制化 Prompt：</p>
+<ol>
+<li>从语料中采样文本片段</li>
+<li>让 LLM 分析领域特征，生成 <strong>domain persona</strong></li>
+<li>基于模板自动生成包含领域特定 few-shot 示例的提取 Prompt</li>
+<li>自动扩展实体类型（例如从默认的 PERSON/ORGANIZATION/GEO 扩展到包含 MUSIC_GENRE/LOCATION 等）</li>
+</ol>
+<hr/>
+<h2 id="4-langchain-llmgraphtransformer-的-prompt-设计-4-langchain">4. LangChain LLMGraphTransformer 的 Prompt 设计 {#4-langchain}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-langchain-llmgraphtransformer-的-prompt-设计-4-langchain" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>LangChain 的方案更偏向<strong>工具化</strong>设计，核心思路是：</p>
+<h3 id="41-双模式设计">4.1 双模式设计<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-双模式设计" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;graph LR\n    A[\&quot;LLMGraphTransformer\&quot;] --> B{\&quot;LLM 支持 Function Calling?\&quot;}\n    B -->|\&quot;是\&quot;| C[\&quot;Tool-based 模式\&quot;]\n    B -->|\&quot;否\&quot;| D[\&quot;Prompt-based 模式\&quot;]\n    \n    C -->|\&quot;Pydantic Schema 定义输出\&quot;| E[\&quot;结构化输出\&quot;]\n    D -->|\&quot;Prompt 中显式定义格式\&quot;| E&quot;">graph LR
+    A[&quot;LLMGraphTransformer&quot;] --> B{&quot;LLM 支持 Function Calling?&quot;}
+    B -->|&quot;是&quot;| C[&quot;Tool-based 模式&quot;]
+    B -->|&quot;否&quot;| D[&quot;Prompt-based 模式&quot;]
+    
+    C -->|&quot;Pydantic Schema 定义输出&quot;| E[&quot;结构化输出&quot;]
+    D -->|&quot;Prompt 中显式定义格式&quot;| E
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<h3 id="42-system-prompt">4.2 System Prompt<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-system-prompt" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>You are a top-tier algorithm designed for extracting information in structured </span></span>
+<span data-line><span>formats to build a knowledge graph. Your task is to identify the entities and </span></span>
+<span data-line><span>relations specified in the user prompt from a given text and produce the output </span></span>
+<span data-line><span>in JSON format. This output should be a list of JSON objects, with each object </span></span>
+<span data-line><span>containing the following keys:</span></span>
+<span data-line><span>- &quot;head&quot;: source entity name</span></span>
+<span data-line><span>- &quot;head_type&quot;: entity type  </span></span>
+<span data-line><span>- &quot;relation&quot;: relationship type</span></span>
+<span data-line><span>- &quot;tail&quot;: target entity name</span></span>
+<span data-line><span>- &quot;tail_type&quot;: entity type</span></span></code></pre></figure>
+<p><strong>差异化特点</strong>：</p>
+<ul>
+<li>优先使用 Function Calling / Tool Use（减少格式解析错误）</li>
+<li>通过 Pydantic 模型定义输出 Schema</li>
+<li>支持自定义 Prompt 与默认 Prompt 融合</li>
+</ul>
+<hr/>
+<h2 id="5-社区最佳实践与经验-5-社区经验">5. 社区最佳实践与经验 {#5-社区经验}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-社区最佳实践与经验-5-社区经验" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>基于 Reddit、知乎、CSDN 等技术社区的讨论，以下是关键经验总结：</p>
+<h3 id="51-prompt-设计技巧">5.1 Prompt 设计技巧<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-prompt-设计技巧" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>技巧</th><th>说明</th><th>来源</th></tr></thead><tbody><tr><td><strong>严格输出格式</strong></td><td>使用 JSON / 结构化元组，加入 “if unsure, output null”</td><td>Reddit</td></tr><tr><td><strong>分步推理</strong></td><td>Step 1: 识别实体 → Step 2: 识别关系（CoT 风格）</td><td>Reddit/CSDN</td></tr><tr><td><strong>实体规范化</strong></td><td>使用完整名称，避免缩写（‘USA’ → ‘United States of America’）</td><td>LlamaIndex 源码</td></tr><tr><td><strong>关系强度量化</strong></td><td>用 1-10 的整数表示关系强度，支持后续图算法</td><td>GraphRAG</td></tr><tr><td><strong>文本分块策略</strong></td><td>2k-4k tokens 一块，带 overlap，逐块提取</td><td>Reddit</td></tr><tr><td><strong>领域自适应</strong></td><td>为不同领域定制实体类型和示例</td><td>GraphRAG auto-tune</td></tr></tbody></table></div>
+<h3 id="52-常见陷阱">5.2 常见陷阱<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-常见陷阱" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>WARNING</p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><strong>递归悖论</strong>：用 LLM 来提取知识图谱，再用知识图谱来增强 LLM 的检索——本质上是在”不确定性上叠加不确定性”。因此<strong>提取质量验证</strong>至关重要。</p>
+</div>
+</blockquote>
+<ul>
+<li><strong>Attention Drift</strong>：密集实体文本中 LLM 容易”遗忘”后半段实体 → GraphRAG 的 Gleanings 机制正是为此而生</li>
+<li><strong>关系噪声</strong>：Zero-shot 提取会产生大量噪声关系 → 需要 Schema 约束或后处理过滤</li>
+<li><strong>实体消歧</strong>：同一实体的不同称呼（如”Apple”既可以是公司也可以是水果）→ 提供上下文窗口、使用完整名称</li>
+<li><strong>Prompt 过长</strong>：更长的 Prompt ≠ 更好的结果。“Better structure > bigger prompts”</li>
+</ul>
+<h3 id="53-进阶策略">5.3 进阶策略<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-进阶策略" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>构建统一知识图谱</strong>：避免构建多个碎片化的图谱，保留跨领域洞察力</li>
+<li><strong>本体 (Ontology) 驱动</strong>：预定义本体可以帮助消歧和推理</li>
+<li><strong>Prompt + 微调结合</strong>：在关键场景下对小模型做微调，比单纯依赖 Prompt 更稳定</li>
+<li><strong>时间信息保留</strong>：在 Prompt 中强调提取日期/时间信息，为时间线推理提供基础</li>
+</ol>
+<hr/>
+<h2 id="6-框架对比与设计启示-6-对比总结">6. 框架对比与设计启示 {#6-对比总结}<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-框架对比与设计启示-6-对比总结" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="61-三大框架对比">6.1 三大框架对比<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-三大框架对比" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>维度</th><th>LlamaIndex</th><th>GraphRAG</th><th>LangChain</th></tr></thead><tbody><tr><td><strong>Prompt 复杂度</strong></td><td>低→中</td><td>高</td><td>中</td></tr><tr><td><strong>Schema 约束</strong></td><td>无/半/强三级</td><td>有/无两种</td><td>强 Schema (Pydantic)</td></tr><tr><td><strong>输出格式</strong></td><td>文本/JSON</td><td>Tuple/JSON</td><td>JSON / Tool Call</td></tr><tr><td><strong>Few-shot 示例</strong></td><td>1-2 个简单示例</td><td>3 个复杂多类型示例</td><td>通常隐含在 Tool 定义中</td></tr><tr><td><strong>迭代提取</strong></td><td>❌</td><td>✅ Gleanings</td><td>❌</td></tr><tr><td><strong>Prompt 自动调优</strong></td><td>❌</td><td>✅ prompt_tune</td><td>❌</td></tr><tr><td><strong>关系强度</strong></td><td>❌</td><td>✅ 1-10 评分</td><td>❌</td></tr><tr><td><strong>实体描述</strong></td><td>❌</td><td>✅ 综合描述</td><td>基础信息</td></tr><tr><td><strong>多语言支持</strong></td><td>❌</td><td>✅ <code>{language}</code> 参数</td><td>❌</td></tr></tbody></table></div>
+<h3 id="62-设计一个好的-kg-提取-prompt-的清单">6.2 设计一个好的 KG 提取 Prompt 的清单<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-设计一个好的-kg-提取-prompt-的清单" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>✅ 1. 明确目标：告诉 LLM &quot;你要做什么，为什么做&quot;</span></span>
+<span data-line><span>✅ 2. 分步指导：Step 1 → 实体, Step 2 → 关系, Step 3 → 格式化输出</span></span>
+<span data-line><span>✅ 3. 定义 Schema：指定允许的实体类型、关系类型</span></span>
+<span data-line><span>✅ 4. 规范输出格式：JSON / 结构化元组 + 明确的分隔符</span></span>
+<span data-line><span>✅ 5. 提供 Few-shot：2-3 个由简到繁的示例</span></span>
+<span data-line><span>✅ 6. 设置数量上限：max_triplets / 控制输出规模</span></span>
+<span data-line><span>✅ 7. 实体规范化规则：大写、完整形式、长度限制</span></span>
+<span data-line><span>✅ 8. 关系强度评分：1-10 整数，为图算法提供权重</span></span>
+<span data-line><span>✅ 9. 完成标记：如 &lt;|COMPLETE|>，便于解析</span></span>
+<span data-line><span>✅ 10. 迭代机制（可选）：Gleanings / 反复确认是否遗漏</span></span></code></pre></figure>
+<h3 id="63-推荐的-prompt-模板综合最佳实践">6.3 推荐的 Prompt 模板（综合最佳实践）<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#63-推荐的-prompt-模板综合最佳实践" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>以下是综合各框架优点设计的一个<strong>推荐提取 Prompt 模板</strong>：</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>-Goal-</span></span>
+<span data-line><span>你是一个专业的知识图谱构建助手。给定一段文本和一组实体类型，从文本中提取所有相关</span></span>
+<span data-line><span>实体及其之间的关系。</span></span>
+<span data-line> </span>
+<span data-line><span>-Steps-</span></span>
+<span data-line><span>1. 识别所有实体。对每个实体提取：</span></span>
+<span data-line><span>   - name: 实体名称（使用完整、规范的形式，首字母大写）</span></span>
+<span data-line><span>   - type: 从以下类型中选择 [{entity_types}]，如有必要可新增类型</span></span>
+<span data-line><span>   - description: 实体的综合描述</span></span>
+<span data-line><span>   </span></span>
+<span data-line><span>2. 从步骤 1 的实体中，找出所有明确相关的实体对 (source, target)。</span></span>
+<span data-line><span>   对每对关系提取：</span></span>
+<span data-line><span>   - source / target: 步骤 1 中识别的实体名称</span></span>
+<span data-line><span>   - relation: 关系描述</span></span>
+<span data-line><span>   - strength: 1-10 的整数评分</span></span>
+<span data-line> </span>
+<span data-line><span>3. 以 JSON 格式输出：</span></span>
+<span data-line><span>   {</span></span>
+<span data-line><span>     &quot;entities&quot;: [{&quot;name&quot;: &quot;&quot;, &quot;type&quot;: &quot;&quot;, &quot;description&quot;: &quot;&quot;}],</span></span>
+<span data-line><span>     &quot;relationships&quot;: [{&quot;source&quot;: &quot;&quot;, &quot;target&quot;: &quot;&quot;, &quot;relation&quot;: &quot;&quot;, </span></span>
+<span data-line><span>                        &quot;strength&quot;: 0}]</span></span>
+<span data-line><span>   }</span></span>
+<span data-line> </span>
+<span data-line><span>-Guidelines-</span></span>
+<span data-line><span>- 使用实体的最完整名称（如&quot;中华人民共和国&quot;而非&quot;中国&quot;）</span></span>
+<span data-line><span>- 实体名称保持在 3-5 个词以内</span></span>
+<span data-line><span>- 将复杂短语拆分为多个三元组</span></span>
+<span data-line><span>- 如果不确定某关系是否存在，请省略而非猜测</span></span>
+<span data-line> </span>
+<span data-line><span>-Examples-</span></span>
+<span data-line><span>[提供 2-3 个领域相关的示例]</span></span>
+<span data-line> </span>
+<span data-line><span>-Input-</span></span>
+<span data-line><span>实体类型: [{entity_types}]</span></span>
+<span data-line><span>文本: {input_text}</span></span>
+<span data-line> </span>
+<span data-line><span>-Output-</span></span></code></pre></figure>
+<hr/>
+<blockquote>
+<p><strong>研究数据来源</strong>: LlamaIndex 官方源码、Microsoft GraphRAG 官方源码、LangChain 官方文档、Reddit 技术社区、CSDN/知乎中文社区</p>
+</blockquote></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-4" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#知识图谱提取-prompt-设计调研报告" data-for="知识图谱提取-prompt-设计调研报告">知识图谱提取 Prompt 设计调研报告</a></li><li class="depth-1"><a href="#目录" data-for="目录">目录</a></li><li class="depth-1"><a href="#1-总览知识图谱提取-prompt-的通用模式-1-总览" data-for="1-总览知识图谱提取-prompt-的通用模式-1-总览">1. 总览：知识图谱提取 Prompt 的通用模式 {#1-总览}</a></li><li class="depth-1"><a href="#2-llamaindex-的-prompt-设计-2-llamaindex" data-for="2-llamaindex-的-prompt-设计-2-llamaindex">2. LlamaIndex 的 Prompt 设计 {#2-llamaindex}</a></li><li class="depth-2"><a href="#21-default_kg_triplet_extract_tmpl--基础三元组提取" data-for="21-default_kg_triplet_extract_tmpl--基础三元组提取">2.1 DEFAULT_KG_TRIPLET_EXTRACT_TMPL — 基础三元组提取</a></li><li class="depth-2"><a href="#22-default_dynamic_extract_tmpl--动态类型提取" data-for="22-default_dynamic_extract_tmpl--动态类型提取">2.2 DEFAULT_DYNAMIC_EXTRACT_TMPL — 动态类型提取</a></li><li class="depth-2"><a href="#23-default_dynamic_extract_props_tmpl--带属性的动态提取" data-for="23-default_dynamic_extract_props_tmpl--带属性的动态提取">2.3 DEFAULT_DYNAMIC_EXTRACT_PROPS_TMPL — 带属性的动态提取</a></li><li class="depth-2"><a href="#24-llamaindex-的-extractor-抽象" data-for="24-llamaindex-的-extractor-抽象">2.4 LlamaIndex 的 Extractor 抽象</a></li><li class="depth-1"><a href="#3-microsoft-graphrag-的-prompt-设计-3-graphrag" data-for="3-microsoft-graphrag-的-prompt-设计-3-graphrag">3. Microsoft GraphRAG 的 Prompt 设计 {#3-graphrag}</a></li><li class="depth-2"><a href="#31-核心提取-prompt--graph_extraction_prompt" data-for="31-核心提取-prompt--graph_extraction_prompt">3.1 核心提取 Prompt — GRAPH_EXTRACTION_PROMPT</a></li><li class="depth-2"><a href="#32-graphrag-独创的-gleanings-机制" data-for="32-graphrag-独创的-gleanings-机制">3.2 GraphRAG 独创的 Gleanings 机制</a></li><li class="depth-2"><a href="#33-graphrag-的-4-种-prompt-变体" data-for="33-graphrag-的-4-种-prompt-变体">3.3 GraphRAG 的 4 种 Prompt 变体</a></li><li class="depth-2"><a href="#34-graphrag-的-prompt-auto-tuning" data-for="34-graphrag-的-prompt-auto-tuning">3.4 GraphRAG 的 Prompt Auto-Tuning</a></li><li class="depth-1"><a href="#4-langchain-llmgraphtransformer-的-prompt-设计-4-langchain" data-for="4-langchain-llmgraphtransformer-的-prompt-设计-4-langchain">4. LangChain LLMGraphTransformer 的 Prompt 设计 {#4-langchain}</a></li><li class="depth-2"><a href="#41-双模式设计" data-for="41-双模式设计">4.1 双模式设计</a></li><li class="depth-2"><a href="#42-system-prompt" data-for="42-system-prompt">4.2 System Prompt</a></li><li class="depth-1"><a href="#5-社区最佳实践与经验-5-社区经验" data-for="5-社区最佳实践与经验-5-社区经验">5. 社区最佳实践与经验 {#5-社区经验}</a></li><li class="depth-2"><a href="#51-prompt-设计技巧" data-for="51-prompt-设计技巧">5.1 Prompt 设计技巧</a></li><li class="depth-2"><a href="#52-常见陷阱" data-for="52-常见陷阱">5.2 常见陷阱</a></li><li class="depth-2"><a href="#53-进阶策略" data-for="53-进阶策略">5.3 进阶策略</a></li><li class="depth-1"><a href="#6-框架对比与设计启示-6-对比总结" data-for="6-框架对比与设计启示-6-对比总结">6. 框架对比与设计启示 {#6-对比总结}</a></li><li class="depth-2"><a href="#61-三大框架对比" data-for="61-三大框架对比">6.1 三大框架对比</a></li><li class="depth-2"><a href="#62-设计一个好的-kg-提取-prompt-的清单" data-for="62-设计一个好的-kg-提取-prompt-的清单">6.2 设计一个好的 KG 提取 Prompt 的清单</a></li><li class="depth-2"><a href="#63-推荐的-prompt-模板综合最佳实践" data-for="63-推荐的-prompt-模板综合最佳实践">6.3 推荐的 Prompt 模板（综合最佳实践）</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript.js" type="module" data-persist="true"></script></html>

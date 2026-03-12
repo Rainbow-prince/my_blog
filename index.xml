@@ -6,9 +6,57 @@
       <description>Last 10 notes on Phish 🐟</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>1.7 Actions: Enabling the Agent to Engage with Its Environment</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.7-Actions</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.7-Actions</guid>
+    <description><![CDATA[  In this section, we explore the concrete steps an AI agent takes to interact with its environment. ]]></description>
+    <pubDate>Mon, 09 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>1.8 Observe: Integrating Feedback to Reflect and Adapt</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.8-Observe</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.8-Observe</guid>
+    <description><![CDATA[ In the observation phase, the agent: Collects Feedback: Receives data or confirmation that its action was successful (or not). ]]></description>
+    <pubDate>Mon, 09 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>1.9 Dummy Agent Library</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.9-Dummy-Agent-Library</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.9-Dummy-Agent-Library</guid>
+    <description><![CDATA[  The prompt for agent AIAgent output = client.chat.completions.create( messages=[ {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;The capital of France is&quot;}, ], stream=False, max_tokens=1024, extra_body={&#039;thinking&#039;: {&#039;type&#039;: &#039;disabled&#039;}}, ) print(ou... ]]></description>
+    <pubDate>Mon, 09 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>Mindmap format</title>
+    <link>https://Rainbow-prince.github.io/Excalidraw/Scripts/Downloaded/Mindmap-format</link>
+    <guid>https://Rainbow-prince.github.io/Excalidraw/Scripts/Downloaded/Mindmap-format</guid>
+    <description><![CDATA[ /* format the left to right mind map tree Mind map is actually a tree, so you must have a root node. ]]></description>
+    <pubDate>Mon, 09 Mar 2026 01:39:09 GMT</pubDate>
+  </item><item>
+    <title>Mindmap Builder</title>
+    <link>https://Rainbow-prince.github.io/Excalidraw/Scripts/Downloaded/Mindmap-Builder</link>
+    <guid>https://Rainbow-prince.github.io/Excalidraw/Scripts/Downloaded/Mindmap-Builder</guid>
+    <description><![CDATA[ /* Mind Map Builder Overview Mind Map Builder transforms the Obsidian-Excalidraw canvas into a rapid brainstorming environment, allowing users to build complex, structured, and visually organized mind maps using primarily keyboard shortcuts. ]]></description>
+    <pubDate>Mon, 09 Mar 2026 01:34:34 GMT</pubDate>
+  </item><item>
+    <title>Harvard Statistics 110 Probability</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Harvard-Statistics-110-Probability</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Harvard-Statistics-110-Probability</guid>
+    <description><![CDATA[ ⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ]]></description>
+    <pubDate>Fri, 27 Feb 2026 09:24:20 GMT</pubDate>
+  </item><item>
+    <title>walkthrough</title>
+    <link>https://Rainbow-prince.github.io/Activity/%E6%BD%AE%E6%B1%95%E6%9E%81%E5%AE%A2%E8%8A%82/walkthrough</link>
+    <guid>https://Rainbow-prince.github.io/Activity/%E6%BD%AE%E6%B1%95%E6%9E%81%E5%AE%A2%E8%8A%82/walkthrough</guid>
+    <description><![CDATA[ 知识图谱提取 Prompt 设计调研报告 目录 总览：知识图谱提取 Prompt 的通用模式 LlamaIndex 的 Prompt 设计 Microsoft GraphRAG 的 Prompt 设计 LangChain LLMGraphTransformer 的 Prompt 设计 社区最佳实践与经验 框架对比与设计启示 1. ]]></description>
+    <pubDate>Mon, 23 Feb 2026 10:15:43 GMT</pubDate>
+  </item><item>
+    <title>1.6 Thought: Internal Reasoning and the ReAct Approach</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.6-Thoughts</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.6-Thoughts</guid>
+    <description><![CDATA[ How can AI reason and plan? How can AI leverages its internal dialogue to analyze information, break down complex problems into manageable steps, and decide what action to take next? AIAgent Additionally, we introduce the ReAct approach, a prompting technique that encourages the model to think “step... ]]></description>
+    <pubDate>Wed, 28 Jan 2026 16:00:00 GMT</pubDate>
+  </item><item>
     <title>1.5 Understanding AI Agents through the Thought-Action-Observation Cycle</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/Thought-Action-Observation-Cycle</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/Thought-Action-Observation-Cycle</guid>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.5-Thought-Action-Observation-Cycle</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.5-Thought-Action-Observation-Cycle</guid>
     <description><![CDATA[ recap: In the previous section we learned: How tools are made available to the agent in the system prompt How Agents are systems that can “reason”, plan, and interact with their environment Let’s break down these actions together: Thought: LLM plan the next action Action: tools calling Observation: ... ]]></description>
     <pubDate>Tue, 27 Jan 2026 16:00:00 GMT</pubDate>
   </item><item>
@@ -17,54 +65,6 @@
     <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Machine-Learning/Flower_Federal_Learning/FLOWER-federal-learning-framework-studying-note</guid>
     <description><![CDATA[ My undergraduate thesis investigates an unsupervised cross-modal hashing method combined with federated learning to enable text- and image-based retrieval of heterogeneous data from multiple hospitals. ]]></description>
     <pubDate>Tue, 27 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>1.3 Messages and Special Tokens</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/Messages-and-Special-Tokens</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/Messages-and-Special-Tokens</guid>
-    <description><![CDATA[ In this section we are going to talk about how LLM structure their generations through chat templates. ]]></description>
-    <pubDate>Mon, 26 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>1.2 What are LLMs?</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-are-LLMs</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-are-LLMs</guid>
-    <description><![CDATA[ This section offers a concise technical explanation of the use of LLMs. ]]></description>
-    <pubDate>Mon, 26 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>1.4 What are Tool?</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-are-Tools</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-are-Tools</guid>
-    <description><![CDATA[  what is tools? how to integrate tools into agent via the System Message? What are AI Tools? Here are some commonly used tools in AI agents: ToolDescriptionWeb SearchAllows the agent to fetch up-to-date information from the internet.Image GenerationCreates images based on text descriptions.Retrieval... ]]></description>
-    <pubDate>Mon, 26 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>UNIT 0</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0/UNIT-0</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-0/UNIT-0</guid>
-    <description><![CDATA[  I am trying to study ai agent using the course by huggingface: Welcome to the 🤗 AI Agents Course. ]]></description>
-    <pubDate>Sat, 24 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>1.1 What is an Agent?</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-is-an-Agent</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/What-is-an-Agent</guid>
-    <description><![CDATA[  In my understanding, AI agent is a tool that can chat with human, in natural human language, and take some action like setting an alarm, reading document or creating a file, rather than just be a “talker”. ]]></description>
-    <pubDate>Sat, 24 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>线性规划学习笔记</title>
-    <link>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0</link>
-    <guid>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0</guid>
-    <description><![CDATA[ 线性规划的基本形式可以从中学线性规划演变过来。中学的线性规划（解线性方程组）往往变量较少，适合手算。这里就给出了一些常见了线性规划题目，在一些有棱有角的可行域中，搜索符合题目的答案，这些答案往往容易出现在顶点 回忆一道高中的线性规划题目 若实数 x，y 满足下列条件： \begin{cases} x + y \geqslant 5 \\ x - 2y \leqslant 3 \\ y \leqslant 4 \end{cases} 则 z = 2x + 3y 的最小值是多少？ 直接用desmos渲染：高中线性规划【demo】 | Desmos高中用手画图的方法图中颜色最深的三角形，便是三个约束... ]]></description>
-    <pubDate>Thu, 22 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>MIT Intro to Algorithms</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Algorithms--and--Data-Structures/MIT-Intro-to-Algorithms</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Algorithms--and--Data-Structures/MIT-Intro-to-Algorithms</guid>
-    <description><![CDATA[ ⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ]]></description>
-    <pubDate>Sun, 18 Jan 2026 15:57:27 GMT</pubDate>
-  </item><item>
-    <title>第2章 微分方程与动力系统</title>
-    <link>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%AC%AC2%E7%AB%A0-%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E5%8A%9B%E7%B3%BB%E7%BB%9F</link>
-    <guid>https://Rainbow-prince.github.io/Activity/Datawahle/202601-%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0/%E7%AC%AC2%E7%AB%A0-%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E5%8A%9B%E7%B3%BB%E7%BB%9F</guid>
-    <description><![CDATA[ RESOURCES Official Website: intro-mathmodel-课程详情 | Datawhale NOTE 微分方程的解本质：给定函数与微分（一阶微分，二阶微分）之间的关系，求解出函数的表达式 为什么需要数值计算方法 求解微分方程，本质上就是通过给定函数与微分之间的关系（微分方程所代表的比如函数y与y‘的关系），求解出函数的表达式。但是事实上，大多数微分方程是没有解析解的，也就是无法求解出函数的具体解析式（无法用某些变量来表示出解，比如y），这个时候，为了得到一个可以用的答案，可以选择数值方法 python中数值计算方法常用的库有哪些？ NumPy、SciPy和SymP... ]]></description>
-    <pubDate>Fri, 16 Jan 2026 16:00:00 GMT</pubDate>
   </item>
     </channel>
   </rss>
