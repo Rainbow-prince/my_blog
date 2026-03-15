@@ -6,6 +6,30 @@
       <description>Last 10 notes on Phish 🐟</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>AI Agent Observability and Evaluation · Hugging Face</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Bonus-Unit-2.-Agent-Observability-and-Evaluation/3-AI-Agent-Observability-and-Evaluation</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Bonus-Unit-2.-Agent-Observability-and-Evaluation/3-AI-Agent-Observability-and-Evaluation</guid>
+    <description><![CDATA[ We’re on a journey to advance and democratize artificial intelligence through open source and open science. ]]></description>
+    <pubDate>Fri, 13 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>2.2.3 Using Tools in LlamaIndex</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-The-LlamaIndex-framework/2.2.3-Using-Tools-in-LlamaIndex</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-The-LlamaIndex-framework/2.2.3-Using-Tools-in-LlamaIndex</guid>
+    <description><![CDATA[ Using Tools in LlamaIndex Quote Defining a clear set of Tools is crucial to performance. ]]></description>
+    <pubDate>Fri, 13 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>2.2.2 What are components in LlamaIndex?</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-The-LlamaIndex-framework/2.2.2-What-are-components-in-LlamaIndex</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-The-LlamaIndex-framework/2.2.2-What-are-components-in-LlamaIndex</guid>
+    <description><![CDATA[ AIAgent There are five key stages within RAG, which in turn will be a part of most larger applications you build. ]]></description>
+    <pubDate>Wed, 11 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>2.2.1 Introduction to LlamaIndex</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-The-LlamaIndex-framework/2.2.1-Introduction-to-LlamaIndex</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-The-LlamaIndex-framework/2.2.1-Introduction-to-LlamaIndex</guid>
+    <description><![CDATA[  AIAgent Components:: the basic building blocks you use in LlamaIndex. These include things like prompts, models, and databases. ]]></description>
+    <pubDate>Tue, 10 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
     <title>1.7 Actions: Enabling the Agent to Engage with Its Environment</title>
     <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.7-Actions</link>
     <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.7-Actions</guid>
@@ -41,30 +65,6 @@
     <guid>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Harvard-Statistics-110-Probability</guid>
     <description><![CDATA[ ⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ]]></description>
     <pubDate>Fri, 27 Feb 2026 09:24:20 GMT</pubDate>
-  </item><item>
-    <title>walkthrough</title>
-    <link>https://Rainbow-prince.github.io/Activity/%E6%BD%AE%E6%B1%95%E6%9E%81%E5%AE%A2%E8%8A%82/walkthrough</link>
-    <guid>https://Rainbow-prince.github.io/Activity/%E6%BD%AE%E6%B1%95%E6%9E%81%E5%AE%A2%E8%8A%82/walkthrough</guid>
-    <description><![CDATA[ 知识图谱提取 Prompt 设计调研报告 目录 总览：知识图谱提取 Prompt 的通用模式 LlamaIndex 的 Prompt 设计 Microsoft GraphRAG 的 Prompt 设计 LangChain LLMGraphTransformer 的 Prompt 设计 社区最佳实践与经验 框架对比与设计启示 1. ]]></description>
-    <pubDate>Mon, 23 Feb 2026 10:15:43 GMT</pubDate>
-  </item><item>
-    <title>1.6 Thought: Internal Reasoning and the ReAct Approach</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.6-Thoughts</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.6-Thoughts</guid>
-    <description><![CDATA[ How can AI reason and plan? How can AI leverages its internal dialogue to analyze information, break down complex problems into manageable steps, and decide what action to take next? AIAgent Additionally, we introduce the ReAct approach, a prompting technique that encourages the model to think “step... ]]></description>
-    <pubDate>Wed, 28 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>1.5 Understanding AI Agents through the Thought-Action-Observation Cycle</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.5-Thought-Action-Observation-Cycle</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.5-Thought-Action-Observation-Cycle</guid>
-    <description><![CDATA[ recap: In the previous section we learned: How tools are made available to the agent in the system prompt How Agents are systems that can “reason”, plan, and interact with their environment Let’s break down these actions together: Thought: LLM plan the next action Action: tools calling Observation: ... ]]></description>
-    <pubDate>Tue, 27 Jan 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>FLOWER federal learning framework studying note</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Machine-Learning/Flower_Federal_Learning/FLOWER-federal-learning-framework-studying-note</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Machine-Learning/Flower_Federal_Learning/FLOWER-federal-learning-framework-studying-note</guid>
-    <description><![CDATA[ My undergraduate thesis investigates an unsupervised cross-modal hashing method combined with federated learning to enable text- and image-based retrieval of heterogeneous data from multiple hospitals. ]]></description>
-    <pubDate>Tue, 27 Jan 2026 16:00:00 GMT</pubDate>
   </item>
     </channel>
   </rss>
