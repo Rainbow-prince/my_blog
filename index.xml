@@ -6,6 +6,18 @@
       <description>Last 10 notes on Phish 🐟</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>MIT Intro to Algorithms</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Algorithms--and--Data-Structures/MIT-Intro-to-Algorithms</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/00.-Theoretical-Foundations/Algorithms--and--Data-Structures/MIT-Intro-to-Algorithms</guid>
+    <description><![CDATA[ ⚠ Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ]]></description>
+    <pubDate>Thu, 26 Mar 2026 04:06:49 GMT</pubDate>
+  </item><item>
+    <title>Note for : Everything Claude Code</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/Everything-Claude-Code/Note-for-Everything-Claude-Code</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/Everything-Claude-Code/Note-for-Everything-Claude-Code</guid>
+    <description><![CDATA[ Everything Claude Code is a complete configuration system that includes: Agents - Specialized subagents for different tasks Skills - Broader workflow definitions (~/.claude/skills/) Commands - Quick executable prompts (~/.claude/commands/) Hooks - Shell commands that execute in response to events MC... ]]></description>
+    <pubDate>Wed, 25 Mar 2026 16:00:00 GMT</pubDate>
+  </item><item>
     <title>Shebang</title>
     <link>https://Rainbow-prince.github.io/Computer-Science/01.-Programming--and--Software-Development/shebang</link>
     <guid>https://Rainbow-prince.github.io/Computer-Science/01.-Programming--and--Software-Development/shebang</guid>
@@ -45,25 +57,13 @@
     <title>2.2.1 Introduction to LlamaIndex</title>
     <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-LlamaIndex/2.2.1-Introduction-to-LlamaIndex</link>
     <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-LlamaIndex/2.2.1-Introduction-to-LlamaIndex</guid>
-    <description><![CDATA[  AIAgent Components:: the basic building blocks you use in LlamaIndex. These include things like prompts, models, and databases. ]]></description>
+    <description><![CDATA[  AIAgent What kind of Components there are in Llamaindex? ? LlamaIndex can be abstracted to 5 layers Data → Node → Index → Retriever → QueryEngine → LLM Response SimpleDirectoryReader(read varies of types of files) LlamaHub connectors SentenceSplitter (cut the chunks out) Embedding Model Index(a lot... ]]></description>
     <pubDate>Tue, 10 Mar 2026 16:00:00 GMT</pubDate>
   </item><item>
     <title>1.7 Actions: Enabling the Agent to Engage with Its Environment</title>
     <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.7-Actions</link>
     <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.7-Actions</guid>
     <description><![CDATA[  In this section, we explore the concrete steps an AI agent takes to interact with its environment. ]]></description>
-    <pubDate>Mon, 09 Mar 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>1.8 Observe: Integrating Feedback to Reflect and Adapt</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.8-Observe</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.8-Observe</guid>
-    <description><![CDATA[ In the observation phase, the agent: Collects Feedback: Receives data or confirmation that its action was successful (or not). ]]></description>
-    <pubDate>Mon, 09 Mar 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>1.9 Dummy Agent Library</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.9-Dummy-Agent-Library</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/UNIT-1.-INTRODUCTION-TO-AGNETS/1.9-Dummy-Agent-Library</guid>
-    <description><![CDATA[  The prompt for agent AIAgent output = client.chat.completions.create( messages=[ {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;The capital of France is&quot;}, ], stream=False, max_tokens=1024, extra_body={&#039;thinking&#039;: {&#039;type&#039;: &#039;disabled&#039;}}, ) print(ou... ]]></description>
     <pubDate>Mon, 09 Mar 2026 16:00:00 GMT</pubDate>
   </item>
     </channel>
