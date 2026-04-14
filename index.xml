@@ -7,9 +7,15 @@
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
     <title>讨论题 01：大模型的数据格式与混合精度</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/LLM--and--%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF/Note-for-llm-algo-leetcode/01.%E7%A1%AC%E4%BB%B6%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/%E8%AE%A8%E8%AE%BA%E9%A2%98-01%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6-(Data-Types--and--Precision)</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/LLM--and--%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF/Note-for-llm-algo-leetcode/01.%E7%A1%AC%E4%BB%B6%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/%E8%AE%A8%E8%AE%BA%E9%A2%98-01%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E4%B8%8E%E6%B7%B7%E5%90%88%E7%B2%BE%E5%BA%A6-(Data-Types--and--Precision)</guid>
-    <description><![CDATA[ RESOURCES 这个是我学习datawhale教程datawhalechina/llm-algo-leetcode 的笔记，作为原始内容的补充，以及加入我本人的一些理解。 原始教程链接01_Hardware_Math_and_Systems/01_Data_Types_and_Precision.md at main · datawhalechina/llm-algo-leetcode NOTE 粗暴地讲，大模型是一堆数字，几十上百亿的参数，每一个参数都是一个数字。 这些数字在 GPU 中游走，在计算单元中跑来跑去。我们得知道这些参数长什么样子，或者最起码知道它多大，才能更好地了解大模型。... ]]></description>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/LLM--and--%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF/Note-for-llm-algo-leetcode/01.%E7%A1%AC%E4%BB%B6%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/01_Data_Types_and_Precision</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/LLM--and--%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF/Note-for-llm-algo-leetcode/01.%E7%A1%AC%E4%BB%B6%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/01_Data_Types_and_Precision</guid>
+    <description><![CDATA[ RESOURCES 这个是我学习datawhale教程datawhalechina/llm-algo-leetcode 的笔记，作为原始内容的补充，以及加入我本人的一些理解。 原始教程链接：01_Hardware_Math_and_Systems/01_Data_Types_and_Precision.md at main · datawhalechina/llm-algo-leetcode NOTE 粗暴地讲，大模型是一堆数字，几十上百亿的参数，每一个参数都是一个数字。 这些数字在 GPU 中游走，在计算单元中跑来跑去。我们得知道这些参数长什么样子，或者最起码知道它多大，才能更好地了解大模型... ]]></description>
+    <pubDate>Mon, 13 Apr 2026 16:00:00 GMT</pubDate>
+  </item><item>
+    <title>讨论题 02：大模型参数量与算力推导 (LLM Params &amp; FLOPs Math)</title>
+    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/LLM--and--%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF/Note-for-llm-algo-leetcode/01.%E7%A1%AC%E4%BB%B6%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/02_LLM_Params_and_FLOPs.md</link>
+    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/LLM--and--%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF/Note-for-llm-algo-leetcode/01.%E7%A1%AC%E4%BB%B6%E6%95%B0%E5%AD%A6%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/02_LLM_Params_and_FLOPs.md</guid>
+    <description><![CDATA[ RESOURCES 这个是我学习datawhale教程datawhalechina/llm-algo-leetcode 的笔记，作为原始内容的补充，以及加入我本人的一些理解。 NOTE Q1：假设隐藏层维度为 d，词表大小为 V。请推导一个包含 L 层的标准 Transformer Decoder 的总参数量。 Transformer 架构图 把 Transformer Decoder 拆解为三大部分（忽略极小的 bias 和 LayerNorm 的权重，它们对百亿参数的占比不到千分之一）： 嵌入层 (Embedding Layer) 与 输出层 (LM Head) — 一头一尾 多头注意力机... ]]></description>
     <pubDate>Mon, 13 Apr 2026 16:00:00 GMT</pubDate>
   </item><item>
     <title>MIT Intro to Algorithms</title>
@@ -59,12 +65,6 @@
     <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-LlamaIndex/2.2.3-Using-Tools-in-LlamaIndex</guid>
     <description><![CDATA[ Using Tools in LlamaIndex Quote Defining a clear set of Tools is crucial to performance. ]]></description>
     <pubDate>Fri, 13 Mar 2026 16:00:00 GMT</pubDate>
-  </item><item>
-    <title>2.2.2 What are components in LlamaIndex?</title>
-    <link>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-LlamaIndex/2.2.2-What-are-components-in-LlamaIndex</link>
-    <guid>https://Rainbow-prince.github.io/Computer-Science/02.-Artificial-Intelligence--and--Machine-Learning/Agent/NOTE_Agent_Course_HF/Unit-2.-Frameworks-for-AI-Agents/Unit-2.2-LlamaIndex/2.2.2-What-are-components-in-LlamaIndex</guid>
-    <description><![CDATA[ AIAgent There are five key stages within RAG, which in turn will be a part of most larger applications you build. ]]></description>
-    <pubDate>Wed, 11 Mar 2026 16:00:00 GMT</pubDate>
   </item>
     </channel>
   </rss>
